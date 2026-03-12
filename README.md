@@ -1,6 +1,13 @@
-# Uncertainty-Aware AI for Tumor Subtyping in Renal Cell Carcinoma
+# Uncertainty-Aware AI for Tumor Subtyping with Histology and Immunohistochemistry: A Multi-Center Study in Renal Cell Carcinoma
 
-This is the official repository for the paper: *"Uncertainty-Aware AI for Tumor Subtyping with Histology and Immunohistochemistry: A Multi-Center Study in Renal Cell Carcinoma"*.
+![Python](https://img.shields.io/badge/Python-3.9-blue)
+![CUDA](https://img.shields.io/badge/CUDA-11.2-green)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+![Status](https://img.shields.io/badge/Status-Research--Code-orange)
+
+This is the official repository for the paper:
+
+*"Uncertainty-Aware AI for Tumor Subtyping with Histology and Immunohistochemistry: A Multi-Center Study in Renal Cell Carcinoma"*.
 
 ## Table of Contents
 
