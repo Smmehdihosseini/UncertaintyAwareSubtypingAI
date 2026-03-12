@@ -1,0 +1,12 @@
+{
+        "gpu_memory": "4",
+        "wsis_dir": "/path/to/dataset/wsis",
+        "info_dir": "/path/to/folder/_info",
+        "dfs_dir": "/path/to/folder/_dataframes",
+        "weights_dir": "/path/to/folder/_weights",
+        "cache_dir": "/path/to/folder/_cache",
+        "results_dir": "/path/to/folder/_results",
+        "figures_dir": "/path/to/folder/_figures",
+        "preds_dir": "/path/to/folder/_predictions",
+        "log_dir": "/path/to/folder/_logs"
+}

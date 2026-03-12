@@ -1,0 +1,39 @@
+{
+    "Root": {
+        "class_0": [
+            "normal"
+        ],
+        "class_1": [
+            "ccRCC",
+            "pRCC",
+            "CHROMO",
+            "ONCOCYTOMA"
+        ]
+    },
+    "Node": {
+        "class_0": [
+            "ccRCC",
+            "pRCC"
+        ],
+        "class_1": [
+            "CHROMO",
+            "ONCOCYTOMA"
+        ]
+    },
+    "Leaf1": {
+        "class_0": [
+            "CHROMO"
+        ],
+        "class_1": [
+            "ONCOCYTOMA"
+        ]
+    },
+    "Leaf2": {
+        "class_0": [
+            "ccRCC"
+        ],
+        "class_1": [
+            "pRCC"
+        ]
+    }
+}

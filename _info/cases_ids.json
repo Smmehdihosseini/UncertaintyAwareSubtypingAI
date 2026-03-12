@@ -1,0 +1,16 @@
+{
+    "CenterB":{
+            "ccRCC": [
+                    "HPB1"
+                ],
+            "pRCC": [
+                    "HPB2"
+                ],
+            "CHROMO": [
+                    "HPB3"      
+                ],
+            "ONCOCYTOMA": [
+                    "HPB4"     
+                ]
+            }
+}

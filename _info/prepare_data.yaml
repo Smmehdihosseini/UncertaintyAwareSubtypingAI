@@ -1,0 +1,12 @@
+centers:
+  CenterA:
+    - 1
+    - 2
+
+include:
+  - HPA3
+  - HPB4
+
+exclude:
+  - HPA1
+  - HPB2
