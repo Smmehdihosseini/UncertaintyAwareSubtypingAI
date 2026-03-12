@@ -100,7 +100,7 @@ if __name__ == '__main__':
 
     if args.verbose:
         logger.info(f">>> Found {ids_tot.shape[0]} Patients {subtype_counts} ...")
-        logger.info(f">>> Loading/Creating Train Test ID Split File ...")
+        logger.info(f">>> Loading/Creating Train Val ID Split File ...")
 
     split_ids = patient_kfold_split(ids_df=ids_tot,
                                    n_folds=args.cross_val_fold,
@@ -204,7 +204,7 @@ if __name__ == '__main__':
             logger.info(f">>> [{fold}]: Saving Training DataFrame ...")
 
         fold_train_df = data_df[data_df['id'].isin([id for subtype in fold_ids['Train'].values() for id in subtype])]
-        fold_test_df = data_df[data_df['id'].isin([id for subtype in fold_ids['Test'].values() for id in subtype])]
+        fold_test_df = data_df[data_df['id'].isin([id for subtype in fold_ids['Val'].values() for id in subtype])]
 
         fold_train_dir = os.path.join(args.dfs_dir, fold)
         fold_test_dir = os.path.join(args.dfs_dir, fold)

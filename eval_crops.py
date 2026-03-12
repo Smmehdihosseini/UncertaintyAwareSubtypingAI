@@ -34,7 +34,7 @@ if __name__=='__main__':
     parser.add_argument("--wsi_level", type=int, default=0, help="Whole Slide Image Level of Magnification During Cropping Stage")
     parser.add_argument("--overlap", type=int, default=1, help="Patches Overlap During Cropping Stage; 1: No Overlap, 2: 50%, etc.")
     parser.add_argument("--batch_size", type=int, default=128, help="Batch Size For Inference Multiprocessing")
-    parser.add_argument("--eval_type", type=str, default='Train', help="Evaluate Training/Validation Set")
+    parser.add_argument("--eval_type", type=str, default='Train', help="Evaluate Training/Val Set")
     parser.add_argument("--weights_id", type=str, default='Fold1', help='Weights Identifier')
     parser.add_argument("--cross_val", type=str, default="Fold1", help='Cross Validation Evaluation')
     parser.add_argument("--eval_stages", type=str, default="Root, Node, Leaf1, Leaf2", help='Stages to be evaluated, it must be comma-separated')
@@ -101,7 +101,7 @@ if __name__=='__main__':
                 eval_df_prefix = f"{args.cross_val}"   
             eval_df = pd.read_csv(os.path.join(args.dfs_dir, args.weights_id, f"{eval_df_prefix}_{stage}.csv"))
 
-        elif args.eval_type=='Validation':
+        elif args.eval_type=='Val':
             eval_df_name = 'val_df'
             if args.cross_val!='None':
                 eval_df_name = f"{args.cross_val}_{eval_df_name}"

@@ -40,7 +40,7 @@ if __name__=='__main__':
     parser.add_argument("--stain_transfer", type=lambda x: bool(strtobool(x)), default=False, help="Use Stain Transfer (true or false)")
     parser.add_argument("--save_plots", type=bool, default=True, help="Save Figures")
     parser.add_argument("--save_preds", type=bool, default=True, help="Save Predictions")
-    parser.add_argument("--eval_cases", type=str, default='Train', help="Type of Analyse; Train, Test or Cases")
+    parser.add_argument("--eval_cases", type=str, default='Train', help="Type of Analyse; Train, Val or Cases")
     parser.add_argument("--cases_id", type=str, default='Lyon', help="If eval_cases set to 'Cases', Cases ID Must Be Set")
     parser.add_argument("--stat_metrics", nargs=4, type=str, default=["mean", "std", "entropy", "conf_95"], help="Analyze Statistics Metrics")
     parser.add_argument("--save_metrics", type=bool, default=False, help="Save Statistic Metrics")
@@ -124,8 +124,8 @@ if __name__=='__main__':
         split_ids = split_ids[args.cross_val]
     if args.eval_cases=='Train':
         eval_cohort = split_ids['Train']
-    elif args.eval_cases=='Test':
-        eval_cohort = split_ids['Test']
+    elif args.eval_cases=='Val':
+        eval_cohort = split_ids['Val']
     else:
         if args.eval_cases=='Cases':
             try:

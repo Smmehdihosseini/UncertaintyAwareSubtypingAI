@@ -14,7 +14,7 @@ def patient_split(ids_df,
                                        "CHROMO":[],
                                        "ONCOCYTOMA":[]
                                    },
-                                   "Test":
+                                   "Val":
                                    {
                                        "ccRCC":[],
                                        "pRCC":[],
@@ -26,26 +26,26 @@ def patient_split(ids_df,
     temp_data_df = ids_df.copy()
 
     if not load:
-        logger.info(">>> Splitting Training/Test IDs ...")
-        split_ids = {'Train':{}, 'Test': {}}
-        train_test_ids = {'Train':{}, 'Test': {}}
+        logger.info(">>> Splitting Training/Val IDs ...")
+        split_ids = {'Train':{}, 'Val': {}}
+        train_test_ids = {'Train':{}, 'Val': {}}
 
         for subtype, count in split_ratio['Train'].items():
             train_test_ids['Train'][subtype] = []
-            train_test_ids['Test'][subtype] = []
+            train_test_ids['Val'][subtype] = []
 
             st_temp = (temp_data_df['subtype'] == subtype) & (~temp_data_df['roi_exist'])
             if (st_temp).any():
                 for index, _ in ids_df[st_temp].iterrows():
-                    train_test_ids['Test'][subtype].append(ids_df.iloc[index]['id'])
+                    train_test_ids['Val'][subtype].append(ids_df.iloc[index]['id'])
                     temp_data_df = temp_data_df.drop(index=index)
 
             for id in default_patients['Train'][subtype]:
                 train_test_ids['Train'][subtype].append(id)
                 temp_data_df = temp_data_df.drop(index=temp_data_df[temp_data_df['id']==id].index[0])
 
-            for id in default_patients['Test'][subtype]:
-                train_test_ids['Test'][subtype].append(id)
+            for id in default_patients['Val'][subtype]:
+                train_test_ids['Val'][subtype].append(id)
                 temp_data_df = temp_data_df.drop(index=temp_data_df[temp_data_df['id']==id].index[0])
 
             st_df = temp_data_df[temp_data_df['subtype'] == subtype]
@@ -53,13 +53,13 @@ def patient_split(ids_df,
             st_test_ids = [id for id in st_df['id'] if id not in st_train_ids]
 
             train_test_ids['Train'][subtype].extend(st_train_ids)
-            train_test_ids['Test'][subtype].extend(st_test_ids)
+            train_test_ids['Val'][subtype].extend(st_test_ids)
 
             for index in train_test_ids['Train'][subtype]:
                 split_ids['Train'][subtype].append(ids_df.iloc[index]['id'])
 
-            for index in train_test_ids['Test'][subtype]:
-                split_ids['Test'][subtype].append(ids_df.iloc[index]['id'])
+            for index in train_test_ids['Val'][subtype]:
+                split_ids['Val'][subtype].append(ids_df.iloc[index]['id'])
 
         with open(split_ids_dir, 'w') as file:
             json.dump(split_ids, file, indent=4)
@@ -91,10 +91,10 @@ def patient_kfold_split(ids_df,
         logger.info(">>> Splitting IDs for K-Fold Cross-Validation ...")
 
         for fold in range(n_folds):
-            fold_splits[f'Fold{fold+1}'] = {'Train': {}, 'Test': {}}
+            fold_splits[f'Fold{fold+1}'] = {'Train': {}, 'Val': {}}
             for subtype in subtypes:
                 fold_splits[f'Fold{fold+1}']['Train'][subtype] = []
-                fold_splits[f'Fold{fold+1}']['Test'][subtype] = []
+                fold_splits[f'Fold{fold+1}']['Val'][subtype] = []
 
         for subtype in subtypes:
             st_df = ids_df[ids_df['subtype'] == subtype]
@@ -105,7 +105,7 @@ def patient_kfold_split(ids_df,
                 test_ids = st_df.iloc[test_index]['id'].tolist()
 
                 fold_splits[f'Fold{fold+1}']['Train'][subtype].extend(train_ids)
-                fold_splits[f'Fold{fold+1}']['Test'][subtype].extend(test_ids)
+                fold_splits[f'Fold{fold+1}']['Val'][subtype].extend(test_ids)
 
         with open(split_ids_dir, 'w') as file:
             json.dump(fold_splits, file, indent=4)
